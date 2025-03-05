@@ -1,10 +1,14 @@
-import express from "express";
+import express, { Request, Response, Application } from "express";
+import cors from "cors";
 
-const app = express();
-const PORT = 5000;
+const app: Application = express();
+const PORT = 3000;
 
-app.get("/", (req, res) => {
-  res.send("Hello TypeScript with Express!");
+app.use(cors({ origin: "http://localhost:5173" }));
+
+app.get("/", (req: Request, res: Response) => {
+  console.log("getリクエスト");
+  res.status(200).json({ message: "hello" });
 });
 
 app.listen(PORT, () => {
